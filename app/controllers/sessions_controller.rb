@@ -6,6 +6,9 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in user
+      # remember user
+      params[:session][:remember_me] =='1' ? remember(user) : forget(user) 
+
       # user_url(user)を自動変換してくれている。
       # _url はrender、_pathは他で使う。
       redirect_to user
@@ -17,7 +20,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url
   end
   
