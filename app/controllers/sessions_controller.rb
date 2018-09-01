@@ -6,6 +6,8 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in user
+      # user_url(user)を自動変換してくれている。
+      # _url はrender、_pathは他で使う。
       redirect_to user
     
     else
