@@ -8,10 +8,11 @@ class SessionsController < ApplicationController
       log_in user
       # remember user
       params[:session][:remember_me] =='1' ? remember(user) : forget(user) 
-
+      
       # user_url(user)を自動変換してくれている。
       # _url はrender、_pathは他で使う。
-      redirect_to user
+      # redirect_to user
+      redirect_back_or user
     
     else
       flash.now[:danger] = 'Invalid email/password combination'
