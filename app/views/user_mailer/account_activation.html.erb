@@ -3,8 +3,9 @@
 <p>Hi <%= @user.name %>,</p>
 
 <p>
-Welcome to the Sample App! Click on the link below to activate your account:
+Sample appへようこそ！<br>
+以下のURLをクリックするとアカウントが有効化されます。
 </p>
 
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+<%= link_to "アカウントの有効化", edit_account_activation_url(@user.activation_token,
                                                     email: @user.email) %>
